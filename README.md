@@ -1,5 +1,4 @@
 # AWS
-
 <p/>Install AWS SAM Local on Ubuntu
 <p/>1) Install Docker:
 <br/>&emsp;https://docs.docker.com/install/linux/docker-ce/ubuntu/
@@ -11,7 +10,7 @@
 <br/>&emsp;> sudo npm install -g aws-sam-local
 <p/>5) Check installation
 <br/>&emsp;> sam --version
-<p/>
+<hr/>
 <p/>Getting Started with AWS SAM Local
 <br/>https://blog.rowanudell.com/getting-started-with-aws-sam-local/
 
