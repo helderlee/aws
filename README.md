@@ -11,5 +11,8 @@
 <br/>&emsp;> sudo npm install -g aws-sam-local
 <p/>5) Check installation
 <br/>&emsp;> sam --version
+<p/>
+<p/>Getting Started with AWS SAM Local
+<br/>https://blog.rowanudell.com/getting-started-with-aws-sam-local/
 
 
