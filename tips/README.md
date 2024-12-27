@@ -1,4 +1,5 @@
-#Tips
+# Tips
 
-<p/>Visual AWS Diagrams
-<p/>https://cloudcraft.co/
+Visual AWS diagrams
+
+https://cloudcraft.co/
