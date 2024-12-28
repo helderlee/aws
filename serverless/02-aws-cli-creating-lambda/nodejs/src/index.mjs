@@ -1,4 +1,4 @@
-export const handler = async (event) => {
+export const handler = async (event, context) => {
     try {
         const { num1, num2 } = event;
 
@@ -7,11 +7,18 @@ export const handler = async (event) => {
         }
 
         console.log("Received event:", JSON.stringify(event, null, 2));
+        console.log(`Remaining Time (ms): ${context.getRemainingTimeInMillis()}`);
+        console.log(`Function Name: ${context.functionName}`);
+        console.log(`Log Stream Name: ${context.logStreamName}`);
 
         const total = num1 * num2;
         const response = {
             statusCode: 200,
-            body: JSON.stringify(`The total of ${num1} multiplied by ${num2} is ${total}`),
+            body: JSON.stringify({
+                message: `The total of ${num1} multiplied by ${num2} is ${total}`,
+                functionName: context.functionName,
+                logStreamName: context.logStreamName
+            }),
         };
 
         console.log("Response:", JSON.stringify(response, null, 2));
@@ -26,4 +33,3 @@ export const handler = async (event) => {
         };
     }
 };
-
