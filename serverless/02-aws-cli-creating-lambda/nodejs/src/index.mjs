@@ -6,6 +6,8 @@ export const handler = async (event, context) => {
             throw new Error('Invalid input: num1 and num2 must be numbers.');
         }
 
+        console.info("Info Log");
+        console.warn("Warning Log");
         console.log("Received event:", JSON.stringify(event, null, 2));
         console.log(`Remaining Time (ms): ${context.getRemainingTimeInMillis()}`);
         console.log(`Function Name: ${context.functionName}`);
