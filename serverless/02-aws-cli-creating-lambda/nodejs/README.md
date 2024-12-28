@@ -16,3 +16,17 @@ Zip the handler to function.zip.
 ```
 aws lambda update-function-code --function-name my-nodejs-function --zip-file fileb://function.zip
 ```
+
+# Environment Variables
+
+```
+aws lambda update-function-configuration --function-name my-nodejs-function --environment Variables={BUCKET=my-bucket,KEY=file.txt}
+aws lambda get-function-configuration --function-name my-nodejs-function
+```
+
+# Delete Lambda
+
+```
+aws lambda list-functions --max-items 10
+aws lambda delete-function --function-name my-nodejs-function
+```

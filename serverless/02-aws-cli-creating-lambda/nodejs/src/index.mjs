@@ -6,6 +6,16 @@ export const handler = async (event, context) => {
             throw new Error('Invalid input: num1 and num2 must be numbers.');
         }
 
+        // Access environment variables
+        const region = process.env.AWS_REGION;
+        const bucket = process.env.BUCKET;
+        const key = process.env.KEY;
+
+        // Log environment variables
+        console.log(`AWS Region: ${region}`);
+        console.log(`Bucket: ${bucket}`);
+        console.log(`Key: ${key}`);
+
         console.info("Info Log");
         console.warn("Warning Log");
         console.log("Received event:", JSON.stringify(event, null, 2));
@@ -19,7 +29,10 @@ export const handler = async (event, context) => {
             body: JSON.stringify({
                 message: `The total of ${num1} multiplied by ${num2} is ${total}`,
                 functionName: context.functionName,
-                logStreamName: context.logStreamName
+                logStreamName: context.logStreamName,
+                region,
+                bucket,
+                key,
             }),
         };
 
@@ -35,3 +48,4 @@ export const handler = async (event, context) => {
         };
     }
 };
+
