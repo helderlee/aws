@@ -19,6 +19,8 @@ aws lambda update-function-code --function-name calculator-function --zip-file f
 
 # Creating Function URL
 
+* Only for development purposes
+
 ```
 aws lambda create-function-url-config --function-name calculator-function --auth-type NONE
 aws lambda get-function --function-name calculator-function
