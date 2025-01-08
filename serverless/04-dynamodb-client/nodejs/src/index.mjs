@@ -1,6 +1,6 @@
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 import { dynamoDBClient } from "./dynamodbClient.mjs";
-import { GetItemCommand, QueryCommand, PutItemCommand, UpdateItemCommand, DeleteItemCommand } from "@aws-sdk/client-dynamodb";
+import { GetItemCommand, ScanCommand, PutItemCommand, UpdateItemCommand, DeleteItemCommand } from "@aws-sdk/client-dynamodb";
 import { v4 as uuidv4 } from 'uuid';
 
 const TABLE_NAME = "products";
@@ -100,7 +100,7 @@ const getProducts = async (event) => {
             })
         };
 
-        const { Items: items } = await dynamoDBClient.send(new QueryCommand(params));
+        const { Items: items } = await dynamoDBClient.send(new ScanCommand(params));
 
         console.log("Items:", items);
 
@@ -162,10 +162,14 @@ const updateProduct = async (event) => {
 
         const updateExpression = [];
         const expressionAttributeValues = {};
+        const expressionAttributeNames = {};
 
         for (const [attribute, value] of Object.entries(updateBody)) {
-            updateExpression.push(`${attribute} = :${attribute}`);
-            expressionAttributeValues[`:${attribute}`] = value;
+            const attributeName = `#${attribute}`;
+            const attributeValue = `:${attribute}`;
+            updateExpression.push(`${attributeName} = ${attributeValue}`);
+            expressionAttributeValues[attributeValue] = value;
+            expressionAttributeNames[attributeName] = attribute;
         }
 
         const params = {
@@ -173,6 +177,7 @@ const updateProduct = async (event) => {
             Key: marshall({ id: productId }),
             UpdateExpression: `SET ${updateExpression.join(', ')}`,
             ExpressionAttributeValues: marshall(expressionAttributeValues),
+            ExpressionAttributeNames: expressionAttributeNames,
             ReturnValues: "ALL_NEW"
         };
 
@@ -185,3 +190,4 @@ const updateProduct = async (event) => {
         throw error;
     }
 };
+
