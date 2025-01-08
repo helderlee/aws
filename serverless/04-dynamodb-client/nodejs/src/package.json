@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.mjs",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.721.0"
+    "@aws-sdk/client-dynamodb": "^3.724.0",
+    "@aws-sdk/util-dynamodb": "^3.724.0",
+    "uuid": "^11.0.4"
   }
 }

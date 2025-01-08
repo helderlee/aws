@@ -1,0 +1,56 @@
+{
+    "version": "2.0",
+    "routeKey": "$default",
+    "rawPath": "/",
+    "rawQueryString": "",
+    "headers": {
+        "x-amz-content-sha256": "db96468b835872e13fe6da67c936a6e811c05a18aab09734aa7ebac6eaa423b6",
+        "content-length": "27",
+        "x-amzn-tls-version": "TLSv1.3",
+        "x-amz-date": "20250108T113834Z",
+        "x-forwarded-proto": "https",
+        "postman-token": "9851d12a-a836-49f5-9769-8595d145fc87",
+        "x-forwarded-port": "443",
+        "x-forwarded-for": "200.189.29.119",
+        "x-amz-security-token": "FwoGZXIvYXdzEJ3//////////wEaDAKy0Cp9LI80m56nYSKBAfxqGUga615I2i/DsFh70tletRbyAu9V77D53kVvUnqFcgQTQXdNRfp+YdEhaCaOCd4IKOg20C/rfszBEu0n/Zf47sX/AyQoVBh46V7zTD3RUO42FR1uwVbKSnA4rHjs3mtkb0htbvjF+LLPYE+x9nMDWk+Jr863qXZuJRh+C9eL9yjNxPm7BjIoA9awpSyrhTErN52tOs7xpbwl0owdrWS3cbdsX7/oSBMB6qoZmgCgqw==",
+        "accept": "*/*",
+        "x-amzn-tls-cipher-suite": "TLS_AES_128_GCM_SHA256",
+        "x-amzn-trace-id": "Root=1-677e6382-380ac9a661b4b0ef2a1907cd",
+        "host": "anqkudwhnc5rftb2ucqaxa5sky0ugkhr.lambda-url.us-east-1.on.aws",
+        "content-type": "application/json",
+        "cache-control": "no-cache",
+        "accept-encoding": "gzip, deflate, br",
+        "user-agent": "PostmanRuntime/7.43.0"
+    },
+    "requestContext": {
+        "accountId": "000000000000",
+        "apiId": "anqkudwhnc5rftb2ucqaxa5sky0ugkhr",
+        "authorizer": {
+            "iam": {
+                "accessKey": "ASIAZKGEG7YCLLZIDCLN",
+                "accountId": "000000000000",
+                "callerId": "AIDAZKGEG7YCNHH7BJWCS",
+                "cognitoIdentity": null,
+                "principalOrgId": "o-zakzgqoahl",
+                "userArn": "arn:aws:iam::000000000000:user/srvuser",
+                "userId": "AIDAZKGEG7YCNHH7BJWCS"
+            }
+        },
+        "domainName": "anqkudwhnc5rftb2ucqaxa5sky0ugkhr.lambda-url.us-east-1.on.aws",
+        "domainPrefix": "anqkudwhnc5rftb2ucqaxa5sky0ugkhr",
+        "http": {
+            "method": "POST",
+            "path": "/",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "200.189.29.119",
+            "userAgent": "PostmanRuntime/7.43.0"
+        },
+        "requestId": "fc979518-cb35-4d05-be42-e391da1c2a9f",
+        "routeKey": "$default",
+        "stage": "$default",
+        "time": "08/Jan/2025:11:37:38 +0000",
+        "timeEpoch": 1736336258475
+    },
+    "body": "{\r\n    \"name\": \"product\"\r\n}",
+    "isBase64Encoded": false
+}

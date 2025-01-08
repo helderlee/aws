@@ -1,0 +1,52 @@
+{
+    "version": "2.0",
+    "routeKey": "$default",
+    "rawPath": "/1",
+    "rawQueryString": "",
+    "headers": {
+        "x-amzn-tls-version": "TLSv1.3",
+        "x-amz-date": "20250108T114410Z",
+        "x-forwarded-proto": "https",
+        "postman-token": "f6e1912d-85da-4936-8290-c72cd4559346",
+        "x-forwarded-port": "443",
+        "x-forwarded-for": "200.189.29.119",
+        "x-amz-security-token": "FwoGZXIvYXdzEJ3//////////wEaDAKy0Cp9LI80m56nYSKBAfxqGUga615I2i/DsFh70tletRbyAu9V77D53kVvUnqFcgQTQXdNRfp+YdEhaCaOCd4IKOg20C/rfszBEu0n/Zf47sX/AyQoVBh46V7zTD3RUO42FR1uwVbKSnA4rHjs3mtkb0htbvjF+LLPYE+x9nMDWk+Jr863qXZuJRh+C9eL9yjNxPm7BjIoA9awpSyrhTErN52tOs7xpbwl0owdrWS3cbdsX7/oSBMB6qoZmgCgqw==",
+        "accept": "*/*",
+        "x-amzn-tls-cipher-suite": "TLS_AES_128_GCM_SHA256",
+        "x-amzn-trace-id": "Root=1-677e64d2-632b741544e137f424b685ad",
+        "host": "anqkudwhnc5rftb2ucqaxa5sky0ugkhr.lambda-url.us-east-1.on.aws",
+        "cache-control": "no-cache",
+        "accept-encoding": "gzip, deflate, br",
+        "user-agent": "PostmanRuntime/7.43.0"
+    },
+    "requestContext": {
+        "accountId": "000000000000",
+        "apiId": "anqkudwhnc5rftb2ucqaxa5sky0ugkhr",
+        "authorizer": {
+            "iam": {
+                "accessKey": "ASIAZKGEG7YCLLZIDCLN",
+                "accountId": "000000000000",
+                "callerId": "AIDAZKGEG7YCNHH7BJWCS",
+                "cognitoIdentity": null,
+                "principalOrgId": "o-zakzgqoahl",
+                "userArn": "arn:aws:iam::000000000000:user/srvuser",
+                "userId": "AIDAZKGEG7YCNHH7BJWCS"
+            }
+        },
+        "domainName": "anqkudwhnc5rftb2ucqaxa5sky0ugkhr.lambda-url.us-east-1.on.aws",
+        "domainPrefix": "anqkudwhnc5rftb2ucqaxa5sky0ugkhr",
+        "http": {
+            "method": "DELETE",
+            "path": "/1",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "200.189.29.119",
+            "userAgent": "PostmanRuntime/7.43.0"
+        },
+        "requestId": "4cab42d7-1108-46e0-abc2-d9c82c8b1cfd",
+        "routeKey": "$default",
+        "stage": "$default",
+        "time": "08/Jan/2025:11:43:14 +0000",
+        "timeEpoch": 1736336594171
+    },
+    "isBase64Encoded": false
+}
