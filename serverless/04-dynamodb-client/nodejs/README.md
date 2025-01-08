@@ -18,3 +18,5 @@ Install the DynamoDB modules:
 `npm install @aws-sdk/client-dynamodb`
 
 `npm install @aws-sdk/util-dynamodb`
+
+`npm install uuid`
