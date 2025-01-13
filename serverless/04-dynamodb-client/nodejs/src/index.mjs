@@ -1,6 +1,6 @@
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 import { dynamoDBClient } from "./dynamodbClient.mjs";
-import { GetItemCommand, ScanCommand, PutItemCommand, UpdateItemCommand, DeleteItemCommand } from "@aws-sdk/client-dynamodb";
+import { GetItemCommand, ScanCommand, QueryCommand, PutItemCommand, UpdateItemCommand, DeleteItemCommand } from "@aws-sdk/client-dynamodb";
 import { v4 as uuidv4 } from 'uuid';
 
 const TABLE_NAME = "products";
@@ -14,14 +14,7 @@ export const handler = async (event) => {
 
         switch (httpRequest.method) {
             case "GET":
-                if (httpRequest.path === "/") {
-                    console.log("GET all products");
-                    body = await getProducts(event);
-                } else {
-                    console.log("GET product by id");
-                    const productId = httpRequest.path.split("/")[1];
-                    body = await getProductById(productId);
-                }
+                body = await getProducts(event);
                 break;
             case "POST":
                 body = await createProduct(event);
@@ -55,25 +48,6 @@ export const handler = async (event) => {
     }
 };
 
-const getProductById = async (productId) => {
-    console.log("Method: getProductById");
-    try {
-        const params = {
-            TableName: TABLE_NAME,
-            Key: marshall({ id: productId })
-        };
-
-        const { Item: item } = await dynamoDBClient.send(new GetItemCommand(params));
-
-        console.log("Item:", item);
-
-        return item ? unmarshall(item) : {};
-    } catch (error) {
-        console.error("Error in getProductById:", error);
-        throw error;
-    }
-};
-
 const getProducts = async (event) => {
     console.log("Method: getAllProducts");
     try {
@@ -82,25 +56,45 @@ const getProducts = async (event) => {
         // Build the FilterExpression and ExpressionAttributeValues
         const filterExpressions = [];
         const expressionAttributeValues = {};
+        const expressionAttributeNames = {};
 
         for (const [key, value] of queryParams.entries()) {
             filterExpressions.push(`#${key} = :${key}`);
             expressionAttributeValues[`:${key}`] = value;
+            expressionAttributeNames[`#${key}`] = key;
         }
 
-        const params = {
+        const productId = event.requestContext.http.path.split("/")[1];
+
+        let params = {
             TableName: TABLE_NAME,
-            ...(filterExpressions.length > 0 && {
-                FilterExpression: filterExpressions.join(' AND '),
-                ExpressionAttributeNames: Array.from(queryParams.keys()).reduce((acc, key) => {
-                    acc[`#${key}`] = key;
-                    return acc;
-                }, {}),
-                ExpressionAttributeValues: marshall(expressionAttributeValues)
-            })
         };
 
-        const { Items: items } = await dynamoDBClient.send(new ScanCommand(params));
+        if (filterExpressions.length > 0) {
+            params = {
+                ...params,
+                FilterExpression: filterExpressions.join(' AND '),
+                ExpressionAttributeNames: expressionAttributeNames,
+                ExpressionAttributeValues: marshall(expressionAttributeValues)
+            };
+        }
+
+        let command;
+        if (productId) {
+            // Use QueryCommand with KeyConditionExpression
+            params = {
+                ...params,
+                KeyConditionExpression: `#id = :id`,
+                ExpressionAttributeNames: { ...expressionAttributeNames, '#id': 'id' },
+                ExpressionAttributeValues: marshall({ ...expressionAttributeValues, ':id': productId }),
+            };
+            command = new QueryCommand(params);
+        } else {
+            // Use ScanCommand
+            command = new ScanCommand(params);
+        }
+
+        const { Items: items } = await dynamoDBClient.send(command);
 
         console.log("Items:", items);
 
@@ -190,4 +184,3 @@ const updateProduct = async (event) => {
         throw error;
     }
 };
-
